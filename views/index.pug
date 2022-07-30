@@ -1,0 +1,94 @@
+extends layout
+
+block headContent
+	title Avian Explorer
+	
+block content
+
+
+	- var tzDiff = -parseFloat(browserTzOffset);
+	if (userTzOffset != "unset")
+		- tzDiff = parseFloat(userTzOffset);
+
+	- var tzMoment = moment.utc(new Date()).add(tzDiff, "hours");
+	- var tzDay = tzMoment.format("MM-DD");
+
+	if (global.avnHolidays.byDay[tzDay])
+		
+		- var day = tzDay;
+		- var dom = parseInt(day.substring(3));
+		- var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+		- var currentMonth = parseInt(day.substring(0, 2)) - 1;
+
+		.mb-2
+			+contentSection
+				h5
+					i.bi-star-fill.text-warning
+					span.ms-2.fw-light.text-muted Today is...
+				each item in global.avnHolidays.byDay[tzDay]
+					h6.fs-5.text-uppercase.fw-light.text-card-highlight.mt-3 #{item.name}!
+						span.ms-2 (#{months[currentMonth]} #{dom})
+				
+					.mb-0 !{item.desc}
+
+	if (getblockchaininfo == null)
+		div.alert.alert-danger
+			h5.mb-3 Unable to get basic blockchain data
+			ul
+				li
+					p
+						b If you just started your node, it may still be initializing.
+						div At startup, aviand verifies its block index before making itself available to serve data. The amount of time the verification process takes depends largely on the speed of the machine aviand is running on. If you're running aviand on low powered, inexpensive hardware, don't be surprised if this process takes a long time.
+				li
+					p
+						b If you believe your aviand node is already initialized...
+						div Check your RPC connection info and/or check this application's error log for possible hints about the cause of this issue.
+	else
+		
+		if (getblockchaininfo.initialblockdownload && !["regtest", "signet"].includes(global.activeBlockchain))
+			div.alert.alert-warning.shadow-sm.border.mb-3
+				div.fw-bold.mb-1 Initial Block Download (IBD) - In Progress...
+
+				div.mb-1 Your node is currently downloading and verifying blockchain data. Until the process is finished, some features of this tool will be unusable and/or unreliable.
+
+				span.fw-bold Progress: 
+				span #{new Decimal(getblockchaininfo.verificationprogress).times(100).toDP(3)}%
+
+
+		
+		include includes/index-network-summary.pug
+		
+		
+		
+		
+						
+
+
+		if (latestBlocks)
+			.d-flex.justify-content-between
+				div
+					+sectionTitle("Latest Blocks")
+
+				div
+					a.small.ms-2(href="./blocks") Browse blocks &raquo;
+
+			+contentSection
+				- var blocks = latestBlocks;
+				- var blockOffset = 0;
+
+				include includes/blocks-list.pug
+							
+
+		+contentSection("Tools")
+			include includes/tools-card.pug
+				
+
+block endOfBody
+	script.
+		$(document).ready(function() {
+			$.get("./snippet/next-block", function(data) {
+				$("#index-next-block").html(data);
+				enableTooltipsAndPopovers();
+			});
+		});
+		

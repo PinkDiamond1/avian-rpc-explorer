@@ -1,0 +1,19 @@
+extends layout
+
+block headContent
+	title #{coinConfig.name} Quotes
+
+block content
+	+pageTitle(`${coinConfig.name} Quotes`)
+
+
+	+dismissableInfoAlert("quotesNoteDismissed", "About Avian Quotes...")
+		h6.mb-2 About Avian Quotes
+
+		| This is a curated list of quotes that highlight key ideas in Avian and related areas. Suggestions are welcome via an issue or PR on <a href='https://github.com/janoside/avn-rpc-explorer' target='_blank'>GitHub</a>.
+
+
+
+	each quote, quoteIndex in avnQuotes
+		.mt-3.mb-4
+			+quote(quote, quoteIndex)

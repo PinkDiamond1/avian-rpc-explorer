@@ -1,0 +1,26 @@
+{
+    "coinbase_tags": {
+      "zpool.ca": {
+        "name": "zpool",
+        "link": "https://zpool.ca/"
+      },
+      "zerg": {
+        "name": "Zergpool",
+        "link": "http://zergpool.com/"
+      },
+      "rplant": {
+        "name": "Rplant",
+        "link": "http://pool.rplant.xyz/"
+      },
+      "coinminerz": {
+        "name": "CoinMinerz",
+        "link": "http://coinminerz.com/"
+      },
+      "PoolMine.xyz": {
+        "name": "PoolMine.xyz",
+        "link": "http://poolmine.xyz"
+      }
+    },
+    "payout_addresses": {
+    }
+}
