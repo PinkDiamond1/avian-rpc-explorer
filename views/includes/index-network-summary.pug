@@ -25,10 +25,10 @@ if (exchangeRates)
 					span.me-1 #{formatData.symbol}
 					| #{formatData.val}
 
-			+summaryItem("Sats Rate")
-				- var satsRateData = utils.satoshisPerUnitOfLocalCurrency(userSettings.localCurrency);
-				span #{satsRateData.amt}
-					small  #{satsRateData.unit}
+			+summaryItem("USD Rate")
+				- var formatData = utils.formatExchangedCurrency(1.0, userSettings.localCurrency, 0);
+				span $1 = #{Math.round(1/formatData.valRaw)}
+					small 	AVN
 
 			+summaryItem("Market Cap")
 				- var supply = utils.estimatedSupply(getblockchaininfo.blocks);
