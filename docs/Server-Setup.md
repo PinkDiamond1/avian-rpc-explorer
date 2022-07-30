@@ -30,7 +30,7 @@ Misc setup
 Get source, npm install
 
     cd /home/avian
-    git clone https://github.com/janoside/avn-rpc-explorer.git
+    git clone https://github.com/AvianNetwork/avian-rpc-explorer.git
     cd /home/avian/avn-rpc-explorer
     npm install
     

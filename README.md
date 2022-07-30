@@ -75,7 +75,7 @@ avn-rpc-explorer
 
 #### Run from source:
 
-1. `git clone https://github.com/janoside/avn-rpc-explorer`
+1. `git clone https://github.com/AvianNetwork/avian-rpc-explorer`
 2. `cd avn-rpc-explorer`
 3. `npm install`
 4. `npm start`

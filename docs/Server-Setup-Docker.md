@@ -6,7 +6,7 @@
 	apt install docker.io
 	
 	# get source, npm install
-	git clone https://github.com/janoside/avn-rpc-explorer.git
+	git clone https://github.com/AvianNetwork/avian-rpc-explorer.git
 	cd avn-rpc-explorer
 	
 	# build docker image
