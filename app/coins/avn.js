@@ -56,16 +56,16 @@ module.exports = {
 	name:"Avian",
 	ticker:"AVN",
 	logoUrlsByNetwork:{
-		"main":"./img/network-mainnet/logo.svg",
-		"test":"./img/network-testnet/logo.svg",
-		"regtest":"./img/network-regtest/logo.svg",
-		"signet":"./img/network-signet/logo.svg"
+		"main":"./img/network-mainnet/logo.png",
+		"test":"./img/network-testnet/logo.png",
+		"regtest":"./img/network-regtest/logo.png",
+		"signet":"./img/network-signet/logo.png"
 	},
 	coinIconUrlsByNetwork:{
-		"main":"./img/network-mainnet/coin-icon.svg",
-		"test":"./img/network-testnet/coin-icon.svg",
-		"signet":"./img/network-signet/coin-icon.svg",
-		"regtest":"./img/network-regtest/coin-icon.svg"
+		"main":"./img/network-mainnet/coin-icon.png",
+		"test":"./img/network-testnet/coin-icon.png",
+		"signet":"./img/network-signet/coin-icon.png",
+		"regtest":"./img/network-regtest/coin-icon.png"
 	},
 	coinColorsByNetwork: {
 		"main": "#00AEFF",
