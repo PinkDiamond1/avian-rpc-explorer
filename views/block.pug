@@ -87,15 +87,9 @@ block content
 								else
 									small.badge.bg-primary #{result.getblock.miner.name}
 
-						if (result.blockstats)
-							+summaryItem("Total Output", "Total value of all transaction outputs")
-								if (result.blockstats.total_out)
-									- var currencyValue = new Decimal(result.blockstats.total_out).plus(new Decimal(result.blockstats.totalfee)).plus(new Decimal(result.blockstats.subsidy));
-									- currencyValue = currencyValue.dividedBy(coinConfig.baseCurrencyUnit.multiplier);
-									+valueDisplay(currencyValue)
-
-								else
-									span 0
+						+summaryItem("Total Output", "Total value of all transaction outputs")
+							- var currencyValue = new Decimal(result.getblock.volume);
+							+valueDisplay(currencyValue)
 
 				if (result.blockstats && result.blockstats.ins && result.blockstats.ins > 0)
 					+contentSection("Fee Details", true, "blockPageShowFeeSummary", true)

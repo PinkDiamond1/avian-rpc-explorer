@@ -228,7 +228,7 @@ function getBlockHashByHeight(blockHeight) {
 
 function getBlockByHash(blockHash) {
 	return getRpcDataWithParams({method:"getblock", parameters:[blockHash]})
-		.then(function(block) {
+	.then(function(block) {	
 			return getRawTransaction(block.tx[0]).then(function(tx) {
 				block.coinbaseTx = tx;
 				block.totalFees = utils.getBlockTotalFeesFromCoinbaseTxAndBlockHeight(tx, block.height);
@@ -244,7 +244,27 @@ function getBlockByHash(blockHash) {
 		}).then(function(block) {
 				block.subsidy = coinConfig.blockRewardFunction(block.height, global.activeBlockchain);
 				return block;
+		}).then(function(block) {
+			return getBlockVolume(blockHash).then(function(volume) {
+				block.volume = volume;
+				return block;
+			})
 		})
+}
+
+function getBlockVolume(blockHash) {
+	return new Promise(async function (resolve, reject) {
+		getRpcDataWithParams({method:"getblock", parameters:[blockHash, 2]}).then(block => {
+			var value = 0;
+			for(var i = 0; i < block.tx.length; ++i) {
+				const tx = block.tx[i];
+				for(var f = 0; f < tx.vout.length; ++f) {
+					value = value + tx.vout[f].value
+				}
+			}
+			resolve(value)
+		})
+	})
 }
 
 function getAddress(address) {

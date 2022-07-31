@@ -152,9 +152,8 @@
 
 						if (blockstatsByHeight)
 							td.text-end.d-none.d-lg-table-cell
-								- var satValue = new Decimal(1); // Volume
-								- var currencyValue = parseInt(satValue.dividedBy(coinConfig.baseCurrencyUnit.multiplier));
-								- var currencyValueDecimals = 0;
+								- var currencyValue = new Decimal(block.volume); // Volume
+								- var currencyValueDecimals = 2;
 
 								if (userSettings.displayCurrency == "avn")
 									+valueDisplaySpecial(currencyValue, 2)
