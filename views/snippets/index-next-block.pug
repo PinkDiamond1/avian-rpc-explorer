@@ -4,25 +4,6 @@ include ../includes/shared-mixins.pug
 
 +summaryRow(1)
 	+summaryItem
-		
-
-		+numWithMutedDecimals(new Decimal(minFeeRate).toDP(2).toString())
-		span.mx-1 &dash;
-
-		if (maxFeeRate - minFeeRate > 10)
-			+numWithMutedDecimals(new Decimal(maxFeeRate).toDP(0).toString())
-
-		else
-			+numWithMutedDecimals(new Decimal(maxFeeRate).toDP(2).toString())
-
-		span.text-tiny.text-muted.ms-1 AVN/vB
-
-		br
-
-
-		
-
-
 
 		| #{txCount.toLocaleString()}
 		span.text-tiny.text-muted.ms-1 tx

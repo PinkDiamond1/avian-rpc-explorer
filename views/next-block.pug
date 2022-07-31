@@ -15,12 +15,9 @@ block content
 	.tab-content
 		+pageTab("Details", true)
 			+contentSection("Summary")
-				+summaryRow(3)
+				+summaryRow(2)
 					+summaryItem("Transactions")
 						| #{blockTemplate.transactions.length.toLocaleString()}
-
-					+summaryItem("Fee Rates", null, "AVN/vB")
-						| #{new Decimal(minFeeRate).toDP(2)} - #{new Decimal(maxFeeRate).toDP(2)}
 
 					+summaryItem("Total Fees")
 						- var subsidy = coinConfig.blockRewardFunction(blockTemplate.height, global.activeBlockchain);
@@ -36,9 +33,6 @@ block content
 								tr
 									th.text-card-highlight.text-uppercase.fw-light #
 									th.text-card-highlight.text-uppercase.fw-light ID
-									th.text-end.text-card-highlight.fw-light
-										span.text-uppercase Fee Rate
-										small.ms-1 (AVN/vB)
 
 									th.text-end.text-card-highlight.text-uppercase.fw-light Fee
 									th.text-end.text-card-highlight.fw-light
@@ -54,16 +48,6 @@ block content
 
 										td
 											a(href=`./tx/${tx.txid}`) #{utils.ellipsizeMiddle(tx.txid, 16)}
-
-										td.text-end
-											| #{new Decimal(tx.fee).dividedBy(tx.weight).times(4).toDP(2)}
-
-											if (tx.avgFeeRate)
-												span.text-muted.ms-2 (
-													span.border-dotted(title="Effective fee rate, including ancestor transactions", data-bs-toggle="tooltip")
-														span.text-muted #{new Decimal(tx.avgFeeRate).toDP(2)}
-													| )
-											
 
 										td.text-end
 											+valueDisplay(new Decimal(tx.fee).dividedBy(coinConfig.baseCurrencyUnit.multiplier))
