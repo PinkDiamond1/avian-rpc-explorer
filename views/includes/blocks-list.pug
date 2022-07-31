@@ -162,9 +162,9 @@
 									+valueDisplay(currencyValue)
 
 						td.text-end.d-none.d-md-table-cell
-							- var currencyValue = new Decimal(1000000).dividedBy(coinConfig.baseCurrencyUnit.multiplier).toDecimalPlaces(4); // avg fee
+							- var currencyValue = new Decimal(block.totalFees).dividedBy(block.nTx).toDecimalPlaces(4); // avg fee
 
-							if (currencyValue > 0)
+							if (currencyValue > 0.0001)
 								if (userSettings.displayCurrency == "avn")
 									+valueDisplaySpecial(currencyValue, 4)
 								else
@@ -174,10 +174,10 @@
 
 						td.text-end.d-none.d-lg-table-cell
 							- var currencyValue = new Decimal(block.totalFees); // total fees
-							- var currencyValueDecimals = 3;
+							- var currencyValueDecimals = 4;
 
 							if (userSettings.displayCurrency == "avn")
-								+valueDisplaySpecial(currencyValue, 2)
+								+valueDisplaySpecial(currencyValue, 4)
 							else
 								+valueDisplay(currencyValue)
 						
