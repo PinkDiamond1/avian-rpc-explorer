@@ -101,10 +101,10 @@ module.exports = {
 	minTxWeight: 166 * 4, // hack
 	difficultyAdjustmentBlockCount: 2016,
 	maxSupplyByNetwork: {
-		"main": new Decimal(20999817.31308491),
-		"test": new Decimal(21000000),
-		"regtest": new Decimal(21000000),
-		"signet": new Decimal(21000000)
+		"main": new Decimal(21000000000),
+		"test": new Decimal(21000000000),
+		"regtest": new Decimal(21000000000),
+		"signet": new Decimal(21000000000)
 	},
 	targetBlockTimeSeconds: 30,
 	targetBlockTimeMinutes: 0.5,
